@@ -7,16 +7,16 @@ Encryption and decryption algorithms for parrallex [https://parallexbank.com](ht
 use Igirid\Parrallex;
 
 
-$ciper = new Parrallex($iv, $key);
+$cipher = new Parrallex($iv, $key);
 // Encrypt Payload
 $data = [
     "username" => 'your username',
     "password" => "your password",
 ];
-$payload = json_encode($ciper->encryptPayload($data));
+$payload = json_encode($cipher->encryptPayload($data));
 
 // Decrypt Response
-$decryptedResponse = $ciper->decryptPayload($encryptedHexResponseFromParrallexServer);
+$decryptedResponse = $cipher->decryptPayload($encryptedHexResponseFromParrallexServer);
 
 ```
 
@@ -42,10 +42,10 @@ require 'vendor/autoload.php';
 
 use Igirid\Parrallex;
 
-$ciper = new Parrallex($iv, $key);
+$cipher = new Parrallex($iv, $key);
 
 // Decrypt Response
-$decryptedResponse = $ciper->decryptPayload($encryptedHexResponseFromParrallexServer);
+$decryptedResponse = $cipher->decryptPayload($encryptedHexResponseFromParrallexServer);
 ```
 
 
