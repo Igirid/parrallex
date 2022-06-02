@@ -2,6 +2,8 @@
     "name": "igirid/parrallex",
     "description": "Encryption and decryption algorithms for parrallex",
     "license": "MIT",
+    "type": "library",
+    "minimum-stability": "stable",
     "autoload": {
         "psr-4": {
             "Igirid\\": "src/"
