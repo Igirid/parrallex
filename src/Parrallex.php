@@ -10,36 +10,43 @@ class Parrallex
     protected $iv;
 
     protected $key;
-    
-    public function __construct($iv, $key)
+
+    public function __construct( $iv, $key)
     {
         $this->iv = $iv;
-
         $this->key = $key;
     }
 
-    public function encryptPayload(String $data)
+    public function encryptPayload($data)
     {
+        $jsonData = json_encode($data);
+
         $cipher = new Rijndael('cbc');
 
         $cipher->setIV($this->iv);
         $cipher->setKey($this->key);
 
-        $ciphertext = $cipher->encrypt($data);
+        $ciphertext = $cipher->encrypt($jsonData);
 
-        return $ciphertext;
+        $encryptedHex = bin2hex($ciphertext);
+
+        return $encryptedHex;
     }
 
-    public function decryptPayload(String $data)
+    public function decryptPayload($hexData)
     {
+        $data = hex2bin($hexData);
+
         $cipher = new Rijndael('cbc');
 
         $cipher->setKeyLength(128);
         $cipher->setIV($this->iv);
         $cipher->setKey($this->key);
 
-        $plaintext = $cipher->decrypt($data);
+        $binPlainText = $cipher->decrypt($data);
 
-        return $plaintext;
+        $decodedData = json_decode($binPlainText, true);
+
+        return $decodedData;
     }
 }
